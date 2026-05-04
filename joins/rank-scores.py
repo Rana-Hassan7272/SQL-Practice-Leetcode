@@ -44,8 +44,23 @@
 # 4. Next unique score → next consecutive rank
 
 # SQL Code:
+# ============================================
+# Problem: Rank Scores (FIXED VERSION)
+# ============================================
+
+# Error Reason:
+# - "rank" is a RESERVED keyword in MySQL
+# - Using it directly as column name causes syntax error
+#
+# Fix:
+# - Either rename it OR use backticks (`rank`)
+
+# Best Practice:
+# - Avoid reserved keywords OR wrap them with backticks
+
+# SQL Code (Fixed):
 SELECT 
     score,
-    DENSE_RANK() OVER (ORDER BY score DESC) AS rank
+    DENSE_RANK() OVER (ORDER BY score DESC) AS `rank`
 FROM Scores
 ORDER BY score DESC;
